@@ -1,6 +1,8 @@
 /* pages/repair/login/login.wxss */
- 
+
 page {
+  
+  background-image: '/pages/images/account_bg.png';
   background-color: #fff;
   font-size: 40rpx;
 }
@@ -23,8 +25,6 @@ page {
   margin-top: 5%;
 }
 
-
-
 .container {
   background-color: white;
   padding: 0;
@@ -32,7 +32,6 @@ page {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .choice {
@@ -51,16 +50,12 @@ page {
   border: none;
 }
 
-
-
 .login {
-  
   width: 90%;
   /* height: 90%; */
-
 }
 
-.login text{
+.login text {
   font-size: 15px;
 }
 
@@ -94,7 +89,7 @@ input {
 } */
 
 button {
-  background-color:r#56b0ae;
+  background-color: r#56b0ae;
   color: #fff;
   top: 200rpx;
   width: 80%;
@@ -153,5 +148,3 @@ button {
   height: 45px;
   font-size: 17.5px;
 }
-
-

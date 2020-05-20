@@ -7,63 +7,56 @@
     <image src="/pages/images/logo.png"></image>
   </view>
   <text>报修人员登录</text>
-
+  <!-- <van-image
+  width="12rpm"
+  height="12rpm"
+  fit="widthFix"
+  src="/pages/images/login_title.png"
+/> -->
 
   <view class="container">
     <text class="choice" style="color:{{color1}}" bindtap="to_apLogin">账号登录</text>|
     <text class="choice" style="color:{{color2}}" bindtap="to_wxLogin">微信登录</text>
   </view>
 
-</view>
 
+</view>
 
 <!-- 账号密码登录 -->
 <view hidden="{{!apLogin}}">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <van-cell-group>
-      <van-field name="username" required clearable label="用户名" icon="question-o" placeholder="请输入用户名" bind:click-icon="onClickIcon" />
+      <van-field name="username" required clearable label="用户名" icon="question-o" placeholder="请输入用户名" bind:blur="getusername" />
 
-      <van-field name="password" type="password" label="密码" placeholder="请输入密码" />
+      <van-field name="password" required type="password" label="密码" placeholder="请输入密码" bind:blur="getpassword" />
     </van-cell-group>
 
     <van-row>
-      <van-col span="8" offset="4">
+      <van-col span="10" offset="2">
+
         <van-button round type="default" bindtap="goToRegister">注册</van-button>
       </van-col>
-      <van-col span="8" offset="2">
-        <van-button round type="info" formType="submit" hover-class="other-button-hover"> 登录</van-button>
+      <van-col span="10" offset="2">
+
+        <van-button round type="info" bindtap="aclogin" hover-class="other-button-hover"> 登录</van-button>
       </van-col>
     </van-row>
-    <button formType="submit">aaa</button>
+
   </form>
 
 </view>
 
 
 
-<!-- 账号密码登录 -->
-<!-- <view hidden="{{!apLogin}}">
-  <view class="login">
-    <form bindsubmit="formSubmit" bindreset="formReset">
-      <view class="section">
-        <input name="username" value="haha" class="{{ username == true ? 'userError' : ''}}" type="text" maxlength="11" placeholder="请输入用户名" />
-        <input name="password" value="123456" class="{{ password == true ? 'userError' : ''}}" type="text" password maxlength="100" placeholder="请输入密码" />
-      </view>
-      <button type="default" formType="submit" hover-class="other-button-hover"> 登录 </button>
-    </form>
-    <button bindtap="goToRegister">还未注册?</button>
-  </view>
-</view> -->
-
 <!-- 微信登录 -->
 <view hidden="{{!wxLogin}}">
   <view wx:if="{{canIUse}}">
-  <van-row>
+    <van-row>
       <van-col span="18" offset="5">
         <van-button round type="info" open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>微信授权登录</van-button>
       </van-col>
     </van-row>
-    
+
   </view>
 
   <view wx:else>请升级微信版本</view>

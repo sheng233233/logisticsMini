@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 标题图片 -->
   <view>
-    <van-image width="320px" height="160px" fit="contain" src="/pages/images/title.jpg" />
+    <van-image width="320px" height="178px" fit="contain" src="/pages/images/title.png" />
   </view>
 
   <!-- 登录入口 -->

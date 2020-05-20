@@ -99,6 +99,7 @@ Page({
       })
       return false;
     }
+    this.setData({phone: phone});
     return true;
   },
 
@@ -111,6 +112,8 @@ Page({
         icon: 'none'
       })
       return false;
+    }else{
+      this.setData({password: password});
     }
     return true;
   },
@@ -124,8 +127,100 @@ Page({
         icon: 'none'
       })
       return false;
+    }else if(this.data.password != check){
+      wx.showToast({
+        title: '密码输入不一致',
+        icon: 'none'
+      })
+      return false;
     }
     return true;
+  },
+
+  
+
+  get_check_username: function(event){
+    let that = this;
+    var username = event.detail.value;
+
+    //检查用户名是否可用
+    //向后端发送请求
+    wx.request({ //使用ajax请求服务
+      url: wx.getStorageSync('host') + "/repair/check/" + username + "/1", //url
+      method: 'GET', //请求方式
+      header: {
+        'Content-Type': 'application/json',
+      },
+      data: {},
+      success: function (res) {
+        if (res.data.status == 200) {
+          var useable = res.data.data;
+          if (!useable) {
+            wx.showToast({
+              title: '该用户名已被使用',
+            });
+          
+            return false;
+          }else{
+            that.setData({username: username})
+          } 
+
+        } 
+      },
+      fail: function () {
+        app.consoleLog("请求数据失败");
+      },
+      complete: function () {
+        // complete 
+      }
+    })
+
+  },
+
+  register:function(){
+    let that = this;
+    //注册
+    //向后端发送请求
+    wx.request({ //使用ajax请求服务
+      url: wx.getStorageSync('host') + "/repair/register", //url
+      method: 'POST', //请求方式
+      header: {
+        'Content-Type': 'application/json',
+      },
+      data: {
+        "username": that.data.username,
+        "phone": that.data.phone,
+        "password": that.data.password
+      },
+      success: function (res) {
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '注册成功',
+            icon: 'success',
+            success: function () {
+              setTimeout(function () {
+                wx.redirectTo({
+                  url: '../login/login',
+                })
+              }, 1000)
+            }
+          })
+
+        } else {
+          wx.showToast({
+            title: '注册失败,请稍后重试',
+            icon: 'none'
+          })
+        }
+
+      },
+      fail: function () {
+        app.consoleLog("请求数据失败");
+      },
+      complete: function () {
+        // complete 
+      }
+    })
   },
 
 
@@ -188,48 +283,7 @@ Page({
             });
             return false;
           } else {
-            //注册
-            //向后端发送请求
-            wx.request({ //使用ajax请求服务
-              url: wx.getStorageSync('host') + "/repair/register", //url
-              method: 'POST', //请求方式
-              header: {
-                'Content-Type': 'application/json',
-              },
-              data: {
-                "username": username,
-                "phone": phone,
-                "password": password
-              },
-              success: function(res) {
-                if (res.data.status == 200) {
-                  wx.showToast({
-                    title: '注册成功',
-                    icon: 'success',
-                    success: function () {
-                      setTimeout(function () {
-                        wx.redirectTo({
-                          url: '../login/login',
-                        })
-                      }, 1000)
-                    }
-                  })
-
-                } else {
-                  wx.showToast({
-                    title: '注册失败,请稍后重试',
-                    icon: 'none'
-                  })
-                }
-
-              },
-              fail: function() {
-                app.consoleLog("请求数据失败");
-              },
-              complete: function() {
-                // complete 
-              }
-            })
+            
           }
 
 

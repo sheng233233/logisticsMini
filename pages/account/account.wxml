@@ -1,23 +1,24 @@
 <!--pages/account/account.wxml-->
+<view style="  background-image: '/pages/images/account_bg.png';">
+  <view>
+    <text>欢迎你!{{user.username}}</text>
+    <text>当前身份:{{user_type=='maintainer'?'维修师傅':'报修人员'}}</text>
+  </view>
+  <button bindtap="to_edit_info">修改账号信息</button>
+  <button bindtap="to_edit_pwd">修改登录密码</button>
+  <button bindtap="logout">安全退出</button>
 
-<view>
-  <text>欢迎你!{{user.username}}</text>
-  <text>当前身份:{{user_type=='maintainer'?'维修师傅':'报修人员'}}</text>
-</view>
-<button bindtap="to_edit_info">修改账号信息</button>
-<button bindtap="to_edit_pwd">修改登录密码</button>
-<button bindtap="logout">安全退出</button>
-
-<!-- 验证旧密码 -->
-<view class='maskWindow' wx:if="{{isMaskWindowShow}}" catchtap='maskWindowBgClick' catchtouchmove='move'>
-  <view class='maskWindowContent' catchtap='clickTap'>
-    <text class="maskWindowTitleText">验证旧密码</text>
-    <view class='maskWindowInputView'>
-      <input class='maskWindowInput' maxlength='100' password placeholder='请输入旧密码' bindinput='maskWindowInput'></input>
-    </view>
-    <view class='maskWindowBtnView'>
-      <view class='maskWindowBtn' catchtap='maskWindowOk'>确定</view>
-      <view class='maskWindowBtn' catchtap='maskWindowCancel'>取消</view>
+  <!-- 验证旧密码 -->
+  <view class='maskWindow' wx:if="{{isMaskWindowShow}}" catchtap='maskWindowBgClick' catchtouchmove='move'>
+    <view class='maskWindowContent' catchtap='clickTap'>
+      <text class="maskWindowTitleText">验证旧密码</text>
+      <view class='maskWindowInputView'>
+        <input class='maskWindowInput' maxlength='100' password placeholder='请输入旧密码' bindinput='maskWindowInput'></input>
+      </view>
+      <view class='maskWindowBtnView'>
+        <view class='maskWindowBtn' catchtap='maskWindowOk'>确定</view>
+        <view class='maskWindowBtn' catchtap='maskWindowCancel'>取消</view>
+      </view>
     </view>
   </view>
 </view>

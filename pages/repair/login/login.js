@@ -159,6 +159,24 @@ Page({
     var password = e.detail.value.password;
     console.log(e)
 
+    
+
+  },
+
+
+  getusername: function(event){
+    this.setData({
+      username: event.detail.value
+    });
+  },
+  getpassword: function() {
+    this.setData({
+      password: event.detail.value
+    });
+  },
+
+  aclogin: function(){
+    let that = this;
     //向后端发送请求
     wx.request({  //使用ajax请求服务
       url: wx.getStorageSync('host') + "/repair/login", //url
@@ -167,8 +185,8 @@ Page({
         'Content-Type': 'application/json',
       },
       data: {
-        "username": username,
-        "password": password
+        "username": that.data.username,
+        "password": that.data.password
       },
       success: function (res) {
         if (res.data.status == 200) {
@@ -191,8 +209,6 @@ Page({
           })
         }
 
-        
-
       },
       fail: function () {
         app.consoleLog("请求数据失败");
@@ -201,7 +217,6 @@ Page({
         // complete 
       }
     })
-
   },
 
 
