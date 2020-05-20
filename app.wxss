@@ -1,0 +1,5 @@
+/**app.wxss**/
+@import 'dist/common/index.wxss';
+.container {
+  background-color: rgb(240, 240, 240)
+} 

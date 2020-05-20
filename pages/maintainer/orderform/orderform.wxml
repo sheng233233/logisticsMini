@@ -1,0 +1,7 @@
+<!--pages/maintainer/orderform/orderform.wxml-->
+<text>pages/maintainer/orderform/orderform.wxml</text>
+<template name="main-order-temp">
+  <button bindtap="to_allocated">待接收任务</button>
+  <button bindtap="to_accept">当前任务</button>
+  <button bindtap="to_all">查看所有工单</button>
+</template>

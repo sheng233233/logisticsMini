@@ -1,0 +1,5 @@
+<!--pages/login/login.wxml-->
+<text>选择登录方式</text>
+<button bindtap="goToRepair">报修人员入口</button>
+<button bindtap="goToMainTainer">维修人员入口</button>
+

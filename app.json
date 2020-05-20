@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/account/account",
+    "pages/account/edit/edit_info",
+    "pages/account/edit/edit_pwd",
+    "pages/orderform/orderform",
+    "pages/login/login",
+    "pages/repair/login/login",
+    "pages/repair/register/register",
+    "pages/repair/orderform/orderform",
+    "pages/repair/orderform/create/create",
+    "pages/repair/orderform/history/history",
+    "pages/repair/orderform/detail/detail",
+    "pages/repair/orderform/edit/edit",
+    "pages/repair/orderform/comment/comment",
+    "pages/maintainer/login/login",
+    "pages/maintainer/orderform/orderform",
+    "pages/maintainer/orderform/detail/detail",
+    "pages/maintainer/orderform/list/list",
+    "pages/maintainer/orderform/done/done",
+    "pages/repair/login/site_pwd/site_pwd",
+    "pages/account/site_pwd/site_pwd"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "后勤报修管理",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#b02923",
+    "list": [
+      {
+        "pagePath": "pages/orderform/orderform",
+        "text": "工单",
+        "iconPath": "pages/images/icon_orderform.png",
+        "selectedIconPath": "pages/images/icon_orderform_HL.png"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "text": "账号",
+        "iconPath": "pages/images/icon_account.png",
+        "selectedIconPath": "pages/images/icon_account_HL.png"
+      }
+    ]
+  },
+  
+  "usingComponents": {
+    "van-row": "dist/row/index",
+    "van-col": "dist/col/index",
+    "van-image": "dist/image/index",
+    "van-grid": "dist/grid/index",
+    "van-grid-item": "dist/grid-item/index",
+    "van-button": "/dist/button/index",
+    "van-field": "/dist/field/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

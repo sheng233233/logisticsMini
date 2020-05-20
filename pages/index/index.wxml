@@ -1,0 +1,52 @@
+<view class="container">
+  <!-- 标题图片 -->
+  <view>
+    <van-image width="320px" height="160px" fit="contain" src="/pages/images/title.jpg" />
+  </view>
+
+  <!-- 登录入口 -->
+  <view>
+    <van-grid column-num="2">
+      <van-grid-item use-slot bindtap="goToRepair">
+        <van-image round width="8rem " height="8rem " src="/pages/images/repair.jpg " />
+        <text>报修人员登录</text>
+      </van-grid-item>
+      <van-grid-item use-slot bindtap="goToMainTainer">
+        <van-image round width=" 8rem " height="8rem " src="/pages/images/maintainer.jpg " />
+        <text>维修人员登录</text>
+      </van-grid-item>
+    </van-grid>
+  </view>
+
+  <!-- <van-row gutter="20 ">
+  <van-col span="8 ">
+    <view class="repair " bindtap="goToRepair ">
+      <image src="/pages/images/repair.jpg "></image>
+      报修人员入口
+    </view>
+  </van-col>
+  <van-col span="8 ">
+    <view class="maintainer " bindtap="goToMainTainer ">
+      <image src="/pages/images/maintainer.jpg "></image>
+      维修人员入口
+    </view>
+  </van-col>
+</van-row> -->
+
+
+
+  <!-- <view class="title ">
+  <image src="/pages/images/title.png "></image>
+</view>
+
+<view class="content ">
+  <view class="repair " bindtap="goToRepair ">
+    <image src="/pages/images/repair.jpg "></image>
+    <text>报修人员入口</text>
+  </view>
+  <view class="maintainer " bindtap="goToMainTainer ">
+    <image src="/pages/images/maintainer.jpg "></image>
+    <text>\n  维修人员入口</text>
+  </view>
+</view> -->
+</view>

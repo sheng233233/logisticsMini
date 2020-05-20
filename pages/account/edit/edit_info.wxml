@@ -1,0 +1,11 @@
+<!--pages/account/edit/edit_info.wxml-->
+<view class="title">用户信息修改</view>
+<view class="login">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="section">
+            <input name="username"  bindblur="check_username" value="{{user.username}}" type="text" maxlength="11" placeholder="请输入新的用户名" />
+            <input name="phone"  bindblur="check_phone" value="{{user.phone}}" placeholder="请输入新的联系电话" />
+        </view>
+        <button formType="submit" hover-class="other-button-hover"> 修改 </button>
+    </form>
+</view>

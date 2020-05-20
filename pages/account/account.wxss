@@ -1,0 +1,59 @@
+/* pages/account/account.wxss */
+
+.maskWindow {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.maskWindowContent {
+  padding: 20rpx 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space - around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.maskWindowTitleText {
+  padding: 10rpx 20rpx;
+  text-align: center;
+  margin: 0 auto;
+  font: 16px;
+  width: 80%;
+}
+
+.maskWindowInputView {
+  width: 80%;
+}
+
+.maskWindowInput {
+  margin: 15rpx 0;
+  padding: 10rpx 20rpx;
+  font-size: 14px;
+  border: 1px solid lightgray;
+  border-radius: 10rpx;
+}
+
+.maskWindowBtnView {
+  width: 80%;
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.maskWindowBtn {
+  padding: 10rpx 50rpx;
+  margin: 20rpx;
+  font: 14px;
+  border-radius: 10rpx;
+  border: 1px solid #15c261;
+}

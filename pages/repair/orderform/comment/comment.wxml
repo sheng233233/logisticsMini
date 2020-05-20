@@ -1,0 +1,18 @@
+<!--pages/repair/orderform/comment/comment.wxml-->
+<text>维修评价</text>
+
+<view style='margin-top:60px;'>请为本次维修评分</view>
+<!-- 点亮的星星 -->
+<block wx:for="{{star}}" wx:key="index">
+  <image class="star" catchtap='in_xin' id='{{index+1}}' data-in='star' src='../../../images/star.png'></image>
+</block>
+<!-- 剩余的熄灭星星 -->
+<block wx:for="{{star_g}}" wx:key="index">
+  <image class="star" catchtap='in_xin' id='{{index+1}}' data-in='starg' src='../../../images/starg.png'></image>
+</block>
+<view>{{desc[star]}}</view>
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <textarea name='details' placeholder="详细评价,选填"></textarea>
+   <button type="default" formType="submit" hover-class="other-button-hover"> 提交评价 </button>
+</form>

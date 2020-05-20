@@ -1,0 +1,10 @@
+<!--pages/maintainer/orderform/done/done.wxml-->
+<text>pages/maintainer/orderform/done/done.wxml</text>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <button bindtap="uploadIMG">上传维修完成图片</button>
+  
+  <image src="{{tempFilePath }}"  data-index="{{index}}" style="width: 100%;" />
+
+  <input name="parts" placeholder="请填写本次维修使用的配件" />
+  <button form-type="submit">完成</button>
+</form>

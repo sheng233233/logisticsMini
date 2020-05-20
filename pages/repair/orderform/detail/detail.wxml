@@ -1,0 +1,25 @@
+<!--pages/repair/orderform/detail/detail.wxml-->
+<text>工单详情页</text>
+<view>
+  <text>
+    维修种类:{{orderform.sort_name}}
+    维修地点:{{orderform.location}}
+    问题描述:{{orderform.description}}
+  </text> 
+  故障图片:<image src="{{orderform.repair_image}}"></image>
+  <text>
+    备注:{{orderform.remarks}}
+    联系人:{{orderform.contact_person}}
+    联系电话:{{orderform.contact_number}}
+    报修日期:{{orderform.repair_date}}
+    工单状态:{{orderform.status}}
+    维修师傅:{{orderform.maintainer_name==null?'暂无':orderform.maintainer_name}}
+  </text> 
+  维修完成图片:<image src="{{orderform.maintain_image}}"></image>
+  <text>
+    评价:{{orderform.comment_details==null?'暂无':orderform.comment_details}}
+  </text>
+  <button wx:if="{{can_edit_delete}}" bindtap="toEditOrderform">修改</button>
+  <button wx:if="{{can_edit_delete}}"  bindtap="toDeleteOrderform">删除</button>
+  <button wx:if="{{can_comment}}" bindtap="toComment">评价</button>
+</view>

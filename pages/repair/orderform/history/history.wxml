@@ -1,0 +1,14 @@
+<!--pages/repair/orderform/history/history.wxml-->
+
+
+
+<view wx:key="id" wx:for="{{orderform_list}}">
+  <view class="card" data-id="{{item.ID}}" bindtap="toDetailByID">
+    <text class="content">
+      维修分类: {{item.sortName}}\n
+      问题描述: {{item.description}}\n
+      维修状态: {{item.status}}\n
+    </text>
+    <text class="time">报修时间: {{item.repair_date}}</text>
+  </view>
+</view>

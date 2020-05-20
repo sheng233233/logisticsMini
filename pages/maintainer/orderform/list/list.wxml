@@ -1,0 +1,13 @@
+<!--pages/maintainer/orderform/list/list.wxml-->
+<text>{{title}}</text>
+<view class="weui-cells weui-cells_after-title">
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-cells weui-cells_after-title" wx:key="ID" wx:for="{{orderform_list}}">
+        <text data-id="{{item.ID}}" bindtap="toDetailByID"> {{item.description}} {{item.sort.name}} {{item.status}} {{item.repair_date}}</text>
+        
+       
+      </view>
+    </view>
+  </view>
+</view>

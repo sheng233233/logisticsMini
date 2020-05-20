@@ -1,0 +1,7 @@
+<!--pages/orderform/orderform.wxml-->
+<view>
+  <import src="../maintainer/orderform/orderform.wxml" />
+  <import src="../repair/orderform/orderform.wxml" />
+  <template is="{{ user_type=='repair' ? 'repair-order-temp' : 'main-order-temp'}}">
+  </template>
+</view>

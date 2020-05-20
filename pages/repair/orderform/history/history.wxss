@@ -1,0 +1,21 @@
+/* pages/repair/orderform/history/history.wxss */
+
+.card{
+  width: 95%;
+  background-color: gainsboro;
+  border-radius: 5px;
+  margin: 10px;
+
+
+
+}
+
+.content{
+   font-size: 30rpx;
+   line-height: 40rpx;
+}
+
+.time{
+  font-size: 23rpx;
+
+}

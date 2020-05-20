@@ -1,0 +1,38 @@
+/* pages/repair/orderform/create/create.wxss */
+.section__title {
+  margin: 20rpx;
+}
+
+.section {
+  width: 100%;
+  font-size: 35rpx;
+  margin: 10rpx;
+  color: #000;
+}
+
+.picker {
+  color: #6BD44E;
+}
+
+/* button{
+  margin: 8rpx;
+  padding: 0rpx;
+  font-size: 30rpx;
+  width: 200rpx;
+  float: left;
+} */
+#view1
+{
+  width: 100%;
+  height: 100%;
+}
+#btns
+{
+  margin: 0 50rpx;
+  padding: 0rpx;
+}
+/* image{
+  width: 650rpx;
+  height: 1050rpx;
+  background-color: lavender;
+} */

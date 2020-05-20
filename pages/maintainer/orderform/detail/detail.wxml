@@ -1,0 +1,59 @@
+<!--pages/maintainer/orderform/detail/derail.wxml-->
+<text>工单详情页</text>
+<view>
+  <text>
+    工单ID:{{orderform.ID}}
+    维修种类:{{orderform.sort.name}}
+    故障地区:{{orderform.location}}
+    问题描述:{{orderform.description}}
+  </text> 故障图片:
+  <image src="{{orderform.repair_image}}"></image>
+  <text> 
+    备注:{{orderform.remarks}}
+    联系人:{{orderform.contact_person}}
+    联系电话:{{orderform.contact_number}}
+    报修日期:{{orderform.repair_date}}
+    工单状态:{{orderform.status}}
+    维修师傅:{{orderform.maintainer_name==null?'暂无':orderform.maintainer_name}}
+  </text>
+
+  <block wx:if='{{orderform.maintain_image != null}}'>
+    维修完成图片:
+    <image src="{{orderform.maintain_image}}"></image>
+  </block>
+
+
+  <block wx:if="{{orderform.comment_level!=null}}">
+    <view>
+
+      <!-- 点亮的星星 -->
+      <block wx:for="{{star}}" wx:key="index">
+        <image class="star" src='../../../images/star.png'></image>
+      </block>
+      <!-- 剩余的熄灭星星 -->
+      <block wx:for="{{star_g}}" wx:key="index">
+        <image class="star" src='../../../images/starg.png'></image>
+      </block>
+
+      <!-- <block wx:for="{{5}}" wx:key="index">
+        {{index}}
+      </block> -->
+
+    </view>
+
+    <view>
+      <text>评价详情:{{orderform.comment.details}}</text>
+    </view>
+
+  </block>
+
+  <block wx:if="{{orderform.comment.details==null}}">
+    暂无评价
+  </block>
+
+
+  <button wx:if="{{can_accept}}" bindtap="accept_orderform">接受</button>
+  <!-- <button disabled="{{isHidden}}" bindtap="toDeleteOrderform">拒绝</button> -->
+  <button wx:if="{{can_done}}" bindtap="to_done_orderform">维修完成</button>
+
+</view>

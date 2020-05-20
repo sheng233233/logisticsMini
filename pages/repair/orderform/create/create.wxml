@@ -1,0 +1,45 @@
+<!--pages/repair/orderform/create/create.wxml-->
+<view>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <button bindtap="uploadIMG">上传故障图片</button>
+    <!-- 回显图片 -->
+    <image src="{{tempFilePath }}" data-index="{{index}}" style="width: 100%;" />
+    <view class="section">
+      <picker mode="multiSelector" bindchange="bindLocationChange" bindcolumnchange="bindLocationColumnChange" value="{{locationIndex}}" range="{{locationArray}}">
+        <view class="picker">
+          点击选择地区：{{locationArray[0][locationIndex[0]]}}，{{locationArray[1][locationIndex[1]]}}
+        </view>
+      </picker>
+    </view>
+    <input name="locationDetail" placeholder="请填写具体的故障地址(地区之后)" />
+    <!-- <map longitude="113.6891841900" latitude="34.5855949600"></map> -->
+    <view class="section">
+      <picker mode="multiSelector" bindchange="bindSortChange" bindcolumnchange="bindSortColumnChange" value="{{sortIndex}}" range="{{sortArray}}" range-key="name">
+        <view class="picker">
+          点击选择维修种类：{{sortArray[0][sortIndex[0]].name}}，{{sortArray[1][sortIndex[1]].name}}
+        </view>
+      </picker>
+    </view>
+    <textarea placeholder="请填写详细故障描述,字数控制在6-500字之间" name="description" />
+    <!-- <view id="view1">
+      <view id="btns">
+        <image id="ima1" mode="aspectFitf" src="{{src}}"></image>
+        <button type="primary" bindtap="btntakephoto">拍摄照片</button>
+        <button type="primary" bindtap="btnchoosephoto">选择照片</button>
+        <block wx:for="{{tempFilePaths}}" wx:key="index">
+          <image src="{{item }}" bindtap="listenerButtonPreviewImage" data-index="{{index}}" style="width: 100%;" />
+        </block>
+        <button type="primary" bindtap="btnupload">上传</button>
+      </view>
+    </view> -->
+
+
+    <textarea placeholder="备注,选填" name="remarks" />
+    <input name="contact_person" bindblur="check_contact_person" placeholder="请填写联系人" />
+
+    <input name="contact_number" bindblur="check_contact_number" placeholder="请填写联系电话" />
+
+    <button type="default" formType="submit" hover-class="other-button-hover"> 提交申请 </button>
+  </form>
+
+</view>

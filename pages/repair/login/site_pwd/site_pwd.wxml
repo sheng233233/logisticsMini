@@ -1,0 +1,8 @@
+<!--pages/repair/login/site_pwd/site_pwd.wxml-->
+<text>
+  设置登录密码
+</text>
+<form bindsubmit="form_submit">
+  <input type="password" placeholder="请输入密码"/>
+  <button form-type="submit">下一步</button>
+</form>
