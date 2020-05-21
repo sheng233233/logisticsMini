@@ -1,11 +1,40 @@
 <!--pages/account/edit/edit_info.wxml-->
-<view class="title">用户信息修改</view>
-<view class="login">
-    <form bindsubmit="formSubmit" bindreset="formReset">
-        <view class="section">
-            <input name="username"  bindblur="check_username" value="{{user.username}}" type="text" maxlength="11" placeholder="请输入新的用户名" />
-            <input name="phone"  bindblur="check_phone" value="{{user.phone}}" placeholder="请输入新的联系电话" />
-        </view>
-        <button formType="submit" hover-class="other-button-hover"> 修改 </button>
-    </form>
+
+
+<view>
+  <image class="accBG" src="/pages/images/login_title.png" />
+
+  <view class="accInfoBG">
+    <view class="accInfo">
+      <text>修改用户信息</text>
+    </view>
+
+
+
+  </view>
+
+
+
+
+  <view class="editinfo">
+    <van-cell-group>
+      <van-field value="{{user.username}}" required clearable label="用户名" placeholder="请输入用户名" bind:blur="get_check_username" />
+      <van-field value="{{user.phone}}" required clearable label="手机号" placeholder="请输入手机号" bind:blur="check_phone" />
+      <van-row>
+        <van-col span="10" offset="2">
+          <van-button round type="default" bindtap="cancel" hover-class="other-button-hover">取消修改</van-button>
+
+        </van-col>
+        <van-col span="10" offset="2">
+
+          <van-button round type="info" bindtap="editinfo" disabled="{{!can_edit}}">确认修改</van-button>
+        </van-col>
+      </van-row>
+
+    </van-cell-group>
+  </view>
+
+
+
+
 </view>

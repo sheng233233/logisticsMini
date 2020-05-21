@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    can_register: false,
     username: false,
     phone: false,
     password: false,
@@ -67,18 +68,7 @@ Page({
 
   },
 
-  check_username: function(e) {
-    // console.log(e.detail.value);
-    var username = e.detail.value;
-    if (username == '' || username == null) {
-      wx.showToast({
-        title: '用户名不能为空',
-        icon: 'none'
-      })
-      return false;
-    }
-    return true;
-  },
+  
 
   check_phone: function(e) {
     // console.log(e.detail.value);
@@ -99,7 +89,9 @@ Page({
       })
       return false;
     }
-    this.setData({phone: phone});
+    this.setData({
+      phone: phone
+    });
     return true;
   },
 
@@ -112,8 +104,10 @@ Page({
         icon: 'none'
       })
       return false;
-    }else{
-      this.setData({password: password});
+    } else {
+      this.setData({
+        password: password
+      });
     }
     return true;
   },
@@ -127,7 +121,7 @@ Page({
         icon: 'none'
       })
       return false;
-    }else if(this.data.password != check){
+    } else if (this.data.password != check) {
       wx.showToast({
         title: '密码输入不一致',
         icon: 'none'
@@ -137,48 +131,75 @@ Page({
     return true;
   },
 
-  
 
-  get_check_username: function(event){
+
+  get_check_username: function(event) {
     let that = this;
     var username = event.detail.value;
+    if (username == null || username == '') {
+      return
+    }
 
     //检查用户名是否可用
     //向后端发送请求
     wx.request({ //使用ajax请求服务
-      url: wx.getStorageSync('host') + "/repair/check/" + username + "/1", //url
+      url: wx.getStorageSync('host') + "/"+wx.getStorageSync('user_type')+"/check/" + username + "/1", //url
       method: 'GET', //请求方式
       header: {
         'Content-Type': 'application/json',
       },
       data: {},
-      success: function (res) {
+      success: function(res) {
         if (res.data.status == 200) {
           var useable = res.data.data;
           if (!useable) {
             wx.showToast({
               title: '该用户名已被使用',
+              icon: 'none'
             });
-          
-            return false;
-          }else{
-            that.setData({username: username})
-          } 
 
-        } 
+            return false;
+          } else {
+            that.setData({
+              username: username,
+              can_register: true
+            })
+          }
+
+        }
       },
-      fail: function () {
+      fail: function() {
         app.consoleLog("请求数据失败");
       },
-      complete: function () {
+      complete: function() {
         // complete 
       }
     })
 
   },
 
-  register:function(){
+  register: function() {
     let that = this;
+    var username = that.data.username;
+    var password = that.data.password;
+    var phone = that.data.phone;
+
+    if (username == null || password == null || phone == null) {
+      wx.showToast({
+        title: '请完整填写信息！',
+        icon: 'none',
+        duration: 1500
+      });
+      return false;
+    }
+    if (username == '' || password == '' || phone == '') {
+      wx.showToast({
+        title: '请完整填写信息！',
+        icon: 'none',
+        duration: 1500
+      });
+      return false;
+    }
     //注册
     //向后端发送请求
     wx.request({ //使用ajax请求服务
@@ -188,19 +209,19 @@ Page({
         'Content-Type': 'application/json',
       },
       data: {
-        "username": that.data.username,
-        "phone": that.data.phone,
-        "password": that.data.password
+        "username": username,
+        "phone": phone,
+        "password": password
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.status == 200) {
           wx.showToast({
             title: '注册成功',
             icon: 'success',
-            success: function () {
-              setTimeout(function () {
+            success: function() {
+              setTimeout(function() {
                 wx.redirectTo({
-                  url: '../login/login',
+                  url: '/pages/login/login',
                 })
               }, 1000)
             }
@@ -214,10 +235,10 @@ Page({
         }
 
       },
-      fail: function () {
+      fail: function() {
         app.consoleLog("请求数据失败");
       },
-      complete: function () {
+      complete: function() {
         // complete 
       }
     })
@@ -283,7 +304,7 @@ Page({
             });
             return false;
           } else {
-            
+
           }
 
 
@@ -309,7 +330,7 @@ Page({
   },
   goToLogin: function() {
     wx.redirectTo({
-      url: '../login/login',
+      url: '/pages/login/login',
     })
   }
 })

@@ -1,27 +1,29 @@
 <!--pages/repair/register/register.wxml-->
 
-
 <view>
-  <van-cell-group>
-    <van-field required clearable label="用户名" placeholder="请输入用户名" bind:blur="get_check_username" />
+  <image style="height: 110px;" src="/pages/images/register_title.png" />
+  <view style="position: relative; top:-50px;">
+    <van-cell-group>
+      <van-field required clearable label="用户名" placeholder="请输入用户名" bind:blur="get_check_username" />
 
-    <van-field required clearable label="手机号" placeholder="请输入手机号" bind:blur="check_phone" />
+      <van-field required clearable label="手机号" placeholder="请输入手机号" bind:blur="check_phone" />
 
-    <van-field required clearable label="密码" type="password" placeholder="请输入密码" bind:blur="check_password" />
+      <van-field required clearable label="密码" type="password" placeholder="请输入密码" bind:blur="check_password" />
 
 
-    <van-field required clearable label="确认密码" type="password" placeholder="请确认密码" border="false" bind:blur="check_check" />
-  </van-cell-group>
-  <van-row>
-    <van-col span="10" offset="2">
-      <van-button round type="info" bindtap="goToLogin" hover-class="other-button-hover">返回登录</van-button>
+      <van-field required clearable label="确认密码" type="password" placeholder="请确认密码" border="false" bind:blur="check_check" />
+    </van-cell-group>
+    <van-row>
+      <van-col span="10" offset="2">
+        <van-button round type="default" bindtap="goToLogin" hover-class="other-button-hover">返回登录</van-button>
 
-    </van-col>
-    <van-col span="10" offset="2">
+      </van-col>
+      <van-col span="10" offset="2">
 
-      <van-button round type="default" bindtap="register">确认注册</van-button>
-    </van-col>
-  </van-row>
+        <van-button round type="info" bindtap="register" disabled="{{!can_register}}">确认注册</van-button>
+      </van-col>
+    </van-row>
+  </view>
 </view>
 
 

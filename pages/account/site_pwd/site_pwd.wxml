@@ -1,8 +1,36 @@
 <!--pages/account/site_pwd/site_pwd.wxml-->
-<text>
-  设置登录密码
-</text>
-<form bindsubmit="form_submit">
-  <input name="password" type="password" placeholder="请输入密码"/>
-  <button form-type="submit">下一步</button>
-</form>
+
+<view>
+  <image class="accBG" src="/pages/images/login_title.png" />
+
+  <view class="accInfoBG">
+    <view class="accInfo">
+      <text>设置登录密码</text>
+    </view>
+
+
+
+  </view>
+
+
+
+
+  <view class="editinfo">
+    <van-cell-group>
+      <van-field required clearable type="password" label="登录密码" placeholder="请输入密码" bind:blur="check_password" />
+      <van-row>
+
+        <van-col span="10" offset="10">
+
+          <van-button round type="info" bindtap="editpwd" disabled="{{!can_edit}}">下一步</van-button>
+        </van-col>
+      </van-row>
+
+    </van-cell-group>
+  </view>
+
+
+
+
+</view>
+

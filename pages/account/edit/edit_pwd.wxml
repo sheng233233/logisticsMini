@@ -1,11 +1,38 @@
 <!--pages/account/edit/edit_pwd.wxml-->
-<view class="title">修改密码</view>
-<view class="login">
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="section">
-      <input name="password" class="{{ password == true ? 'userError' : ''}}" type="text" password maxlength="100" placeholder="请输入新密码" />
-      <input name="check" class="{{ check == true ? 'userError' : ''}}" type="text" password maxlength="100" placeholder="请确认密码" />
+<view>
+  <image class="accBG" src="/pages/images/login_title.png" />
+
+  <view class="accInfoBG">
+    <view class="accInfo">
+      <text>修改登录密码</text>
     </view>
-    <button formType="submit" hover-class="other-button-hover"> 修改 </button>
-  </form>
+
+
+
+  </view>
+
+
+
+
+  <view class="editinfo">
+    <van-cell-group>
+      <van-field required type="password" clearable label="新密码" placeholder="请输入密码" bind:blur="check_password" />
+      <van-field required type="password" clearable label="确认密码" placeholder="请再次输入密码" bind:blur="check_check" />
+      <van-row>
+        <van-col span="10" offset="2">
+          <van-button round type="default" bindtap="cancel" hover-class="other-button-hover">取消修改</van-button>
+
+        </van-col>
+        <van-col span="10" offset="2">
+
+          <van-button round type="info" bindtap="editpwd" disabled="{{!can_edit}}">确认修改</van-button>
+        </van-col>
+      </van-row>
+
+    </van-cell-group>
+  </view>
+
+
+
+
 </view>

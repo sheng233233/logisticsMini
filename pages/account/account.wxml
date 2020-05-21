@@ -1,24 +1,40 @@
 <!--pages/account/account.wxml-->
-<view style="  background-image: '/pages/images/account_bg.png';">
-  <view>
-    <text>欢迎你!{{user.username}}</text>
-    <text>当前身份:{{user_type=='maintainer'?'维修师傅':'报修人员'}}</text>
-  </view>
-  <button bindtap="to_edit_info">修改账号信息</button>
-  <button bindtap="to_edit_pwd">修改登录密码</button>
-  <button bindtap="logout">安全退出</button>
 
-  <!-- 验证旧密码 -->
-  <view class='maskWindow' wx:if="{{isMaskWindowShow}}" catchtap='maskWindowBgClick' catchtouchmove='move'>
-    <view class='maskWindowContent' catchtap='clickTap'>
-      <text class="maskWindowTitleText">验证旧密码</text>
-      <view class='maskWindowInputView'>
-        <input class='maskWindowInput' maxlength='100' password placeholder='请输入旧密码' bindinput='maskWindowInput'></input>
-      </view>
-      <view class='maskWindowBtnView'>
-        <view class='maskWindowBtn' catchtap='maskWindowOk'>确定</view>
-        <view class='maskWindowBtn' catchtap='maskWindowCancel'>取消</view>
-      </view>
+
+<view>
+  <image class="accBG" src="/pages/images/account_bg.png" />
+
+  <view class="accInfoBG">
+    <view class="accInfo">
+      <image class="avatar" src="{{user_avatar}}" />
+      <text>欢迎你{{user.username}}!</text>
     </view>
+
+    <view class="accedit">
+      <van-cell bindtap="to_edit_info" title="修改用户信息" is-link />
+      <van-cell bindtap="to_edit_pwd" title="修改登录密码" is-link />
+      <van-cell bindtap="to_my_list" title="我的工单" is-link />
+      <van-cell bindtap="logout" title="安全退出" is-link />
+    </view>
+
   </view>
+
+  <van-action-sheet round show="{{ show }}" title="密码验证">
+
+    <view>
+      <van-field type="password" label="当前密码" placeholder="请输入密码" required bind:blur="get_oldpassword" size="large"/>
+      <van-row>
+        <van-col span="8" offset="4">
+          <van-button round type="default" bindtap="cancel">取消</van-button>
+        </van-col>
+        <van-col span="8" offset="4">
+          <van-button round type="info" bindtap="check_password">确定</van-button>
+        </van-col>
+      </van-row>
+
+
+    </view>
+  </van-action-sheet>
+
 </view>
+

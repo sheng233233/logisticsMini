@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
     "pages/account/account",
     "pages/account/edit/edit_info",
     "pages/account/edit/edit_pwd",
     "pages/orderform/orderform",
-    "pages/login/login",
+    
     "pages/repair/login/login",
     "pages/repair/register/register",
     "pages/repair/orderform/orderform",
@@ -34,15 +35,15 @@
     "list": [
       {
         "pagePath": "pages/orderform/orderform",
-        "text": "工单",
-        "iconPath": "pages/images/icon_orderform.png",
-        "selectedIconPath": "pages/images/icon_orderform_HL.png"
+        "text": "首页",
+        "iconPath": "pages/images/index.png",
+        "selectedIconPath": "pages/images/index_blue.png"
       },
       {
         "pagePath": "pages/account/account",
-        "text": "账号",
-        "iconPath": "pages/images/icon_account.png",
-        "selectedIconPath": "pages/images/icon_account_HL.png"
+        "text": "我的",
+        "iconPath": "pages/images/acc.png",
+        "selectedIconPath": "pages/images/acc_blue.png"
       }
     ]
   },
@@ -50,12 +51,21 @@
   "usingComponents": {
     "van-row": "/miniprogram_npm/vant-weapp/row/index",
     "van-col": "/miniprogram_npm/vant-weapp/col/index",
-    "van-image": "dist/image/index",
-    "van-grid": "dist/grid/index",
-    "van-grid-item": "dist/grid-item/index",
+    "van-image": "/dist/image/index",
+    "van-grid": "/dist/grid/index",
+    "van-grid-item": "/dist/grid-item/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-field": "/miniprogram_npm/vant-weapp/field/index",
-    "van-toast": "/miniprogram_npm/vant-weapp/toast/index"
+    "van-toast": "/miniprogram_npm/vant-weapp/toast/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+    "van-radio": "/miniprogram_npm/vant-weapp/radio/index",
+    "van-radio-group": "/miniprogram_npm/vant-weapp/radio-group/index",
+    "van-dropdown-menu": "/dist/dropdown-menu/index",
+    "van-dropdown-item": "/dist/dropdown-item/index",
+    "van-action-sheet": "/miniprogram_npm/vant-weapp/action-sheet/index"
+
+
   },
 
   "sitemapLocation": "sitemap.json"

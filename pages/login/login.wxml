@@ -1,5 +1,71 @@
 <!--pages/login/login.wxml-->
-<text>选择登录方式</text>
-<button bindtap="goToRepair">报修人员入口</button>
-<button bindtap="goToMainTainer">维修人员入口</button>
+<!-- <view class="title">报修人员登录</view> -->
 
+ <!-- 标题图片 -->
+  <view>
+    <van-image width="320px" height="178px" fit="contain" src="/pages/images/title.png" />
+  </view>
+
+<view  style="background-color: white; position:relative; top:-50px;">
+  <view class="body">
+
+
+
+  <view class="container">
+    <text class="choice" style="color:{{color1}}" bindtap="to_apLogin">账号登录</text>|
+    <text class="choice" style="color:{{color2}}" bindtap="to_wxLogin">微信登录</text>
+  </view>
+
+
+</view>
+
+<!-- 账号密码登录 -->
+<view hidden="{{!apLogin}}">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <van-cell-group>
+      <van-field name="username" required clearable label="用户名" icon="question-o" placeholder="请输入用户名" bind:blur="getusername" />
+
+      <van-field name="password" required type="password" label="密码" placeholder="请输入密码" bind:blur="getpassword" />
+    </van-cell-group>
+
+    <!-- 用户类型 -->
+    <van-dropdown-menu>
+      <van-dropdown-item bind:change='get_usertype' value="{{ value1 }}" options="{{ option1 }}" />
+    </van-dropdown-menu>
+
+
+    <van-row>
+      <van-col span="10" offset="2">
+
+        <van-button round type="default" bindtap="goToRegister">注册</van-button>
+      </van-col>
+      <van-col span="10" offset="2">
+
+        <van-button round type="info" bindtap="aclogin" hover-class="other-button-hover"> 登录</van-button>
+      </van-col>
+    </van-row>
+
+  </form>
+
+</view>
+
+
+
+<!-- 微信登录 -->
+<view hidden="{{!wxLogin}}">
+  <view wx:if="{{canIUse}}">
+    <van-dropdown-menu>
+      <van-dropdown-item bind:change='get_usertype' value="{{ value1 }}" options="{{ option1 }}" />
+    </van-dropdown-menu>
+    <van-row>
+      <van-col span="18" offset="5">
+        <van-button round type="info" open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>微信授权登录</van-button>
+      </van-col>
+    </van-row>
+
+  </view>
+
+  <view wx:else>请升级微信版本</view>
+
+</view>
+</view>

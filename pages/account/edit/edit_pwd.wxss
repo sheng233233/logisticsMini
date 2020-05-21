@@ -1,45 +1,57 @@
 /* pages/account/edit/edit_pwd.wxss */
-/* pages/repair/login/login.wxss */
-page{
-    background-color:#fff;
-    font-size:40rpx;
-}
-.login image{
-    width:80%;
-    height:100rpx;
-    margin:20% auto;
-    display:block;
-}
-input{
-    border:1px solid #ddd;
-    line-height:80rpx;
-    height:80rpx;
-    width:80%;
-    margin:5% auto;
-    padding-left:20rpx;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-}
-.button-hover {
-    background-color: #b02923;
-}
-/** 添加自定义button点击态样式类**/
-.other-button-hover {
-    background-color: #b02923;
-    color:#fff;
-}
-button{
-    background-color: #b02923;
-    color:#fff;
-    top:200rpx;
-    width:80%;
 
-}
-.userError{
-    border-color:#b02923;
+.accBG {
+  width: 350px;
+  height: 120px;
+  position: absolute;
+  
+  z-index: -1;
 }
 
+.accInfoBG {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+}
+
+.accInfo {
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accInfo text {
+  color: white;
+  font-size: 16px;
+}
 .title{
-  text-align:center;
-  margin:0 auto;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+}
+
+.title text {
+  color: white;
+  font-size: 30px;
+}
+
+.editinfo {
+  position: absolute;
+  top:130px;
+  width: 100%;
+  height: 90%;
+  background-color: white;
+  z-index: -1;
 }
