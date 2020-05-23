@@ -2,20 +2,24 @@
 <template name="repair-order-temp">
   <!-- 标题图片 -->
   <view>
-    <van-image width="320px" height="160px" fit="contain" src="/pages/images/title.png" />
+    <van-image width="320px" height="178px" fit="contain" src="/pages/images/title.png" />
   </view>
 
-  <!-- 登录入口 -->
-  <view>
-    <van-grid column-num="4">
-      <van-grid-item icon="/pages/images/apply.png" use-slot bindtap="to_create">
-        报修申请
-      </van-grid-item>
-      <van-grid-item icon="/pages/images/list.png" use-slot bindtap="to_history">
-        历史订单
-      </van-grid-item>
-    </van-grid>
-  </view>
+
+ <van-grid gutter="{{ 10 }}" clickable column-num="3">
+  <van-grid-item
+    icon="/pages/images/apply_blue.png"
+    link-type="navigateTo"
+    url="/pages/repair/orderform/create/create"
+    text="报修申请"
+  />
+  <van-grid-item
+    icon="/pages/images/list_blue.png"
+    link-type="navigateTo"
+    url="/pages/repair/orderform/history/history"
+    text="历史工单"
+  />
+</van-grid>
 
 
 

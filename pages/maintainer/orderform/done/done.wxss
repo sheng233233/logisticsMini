@@ -1,1 +1,23 @@
 /* pages/maintainer/orderform/done/done.wxss */
+
+.title {
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 10%;
+  margin-bottom: 30px;
+  height: 300;
+  padding-left: 40%;
+  position: fixed;
+}
+
+.title_bg {
+  z-index: -1;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+}
+
+.title_text {
+  color: white;
+  font-size: 50rpx;
+}

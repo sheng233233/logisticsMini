@@ -10,6 +10,7 @@ Page({
     star_g: 5,//没有点亮的星星数
     desc: ['', '很不满意', '不满意', '一般', '满意', '非常满意'],
     level:0,
+    details: null,
     oid:null
   },
 
@@ -23,32 +24,24 @@ Page({
     })
   },
 
-  /**
-   * 选择评价星级
-   */
-  in_xin: function (e) {
-    var in_xin = e.currentTarget.dataset.in;
-    // console.log(e.currentTarget.dataset.in);
-    // console.log(e.currentTarget);
-    var star;
-    if (in_xin == 'star') {
-      star = Number(e.currentTarget.id)
-    } else {
-      star = Number(e.currentTarget.id) + this.data.star
-    }
+
+  onChange: function (event){
+    this.setData({level: event.detail})
+  },
+
+  get_details: function(event){
     this.setData({
-      level: star,
-      star: star,
-      star_g: 5 - star
+      details: event.detail.value == null ? '用户没有评价,默认好评' : event.detail.value
     })
   },
+
 
   /**
    * 提交评价
    */
-  formSubmit:function(e){
+  comment:function(){
     let that = this;
-    var details = e.detail.value.details;
+    var details = that.data.details;
     var level = that.data.level;
 
     //向后端发送请求

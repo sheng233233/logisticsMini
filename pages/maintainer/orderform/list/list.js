@@ -2,9 +2,10 @@
 const app = getApp()
 var page = 1;
 var isfinish = false; //加载完毕
-
+ 
 Page({
   data: {
+    massage: '',
     title: null,
     orderform_list: [],
     inputShowed: false,
@@ -24,20 +25,24 @@ Page({
       case 'allocated':
         {
           this.setData({
-            title: '未接受任务列表'
+            title: '未接受任务列表',
+            massage: '任务已全部接受',
           })
         }
         break;
       case 'accept':
         {
           this.setData({
+            massage: '当前没有维修任务!',
             title: '当前任务列表'
+            
           })
         }
         break;
       case 'all':
         {
           this.setData({
+            massage: '维修记录为空!',
             title: '历史工单'
           })
         }
@@ -109,26 +114,65 @@ Page({
    */
   toDetailByID: function(e) {
     var ID = e.currentTarget.dataset.id;
-    console.log(ID);
+    // console.log(ID);
     wx.navigateTo({
       url: '../detail/detail?ID=' + ID,
     })
-  }
+  },
+
+  accept: function(e) {
+    var ID = e.currentTarget.dataset.id;
+    let that = this;
+    //向后端发送请求
+    wx.request({ //使用ajax请求服务
+      url: wx.getStorageSync('host') + "/orderform/receipt/" + ID, //url
+      method: 'PUT', //请求方式
+      header: {
+        'Content-Type': 'application/json',
+      },
+      data: {},
+      success: function (res) {
+        if (res.data.status == 200) {
+          var list = that.data.orderform_list;
+          var new_list = [];
+          for (var i = 0; i < list.length; i++) {
+            if (list[i].ID != ID) {
+              new_list.push(list[i]);
+            }
+          }
+          that.setData({
+            orderform_list: new_list
+          })
+          wx.showToast({
+            title: '成功接单!',
+            icon: 'success'
+          })
+         
+
+        } else {
+          wx.showToast({
+            title: '接单失败\n请稍后重试',
+            icon: 'none'
+          });
+        }
+
+      },
+      fail: function () {
+        app.consoleLog("请求数据失败");
+      },
+      complete: function () {
+        // complete 
+      }
+    })
+
+
+  },
 })
 
 /**
  * 加载数据
  */
 function loadmore(that) {
-  // if (isfinish) return;
-  // wx.showLoading({
-  //   title: '正在加载中',
-  // })
-
-
-
-  // var get_data = require('../../../getData/orderform/get_data.js');
-  // var orderform_result = get_data.get_maintain_orderform_list(that.data.status);
 
   //向后端发送请求
   wx.request({ //使用ajax请求服务
@@ -141,13 +185,45 @@ function loadmore(that) {
     success: function(res) {
       console.log(res.data)
       if (res.data.status == 200) {
-        console.log(res.data.data);
+        // console.log(res.data.data);
+        var data = res.data.data;
+        var orderform_list = [];
+        for (var i = 0; i < data.length; i++) {
+          // console.log(data[i]);
+          if (data[i].status == "审核通过,未接单") {
+            data[i] = {
+              'ID': data[i].ID,
+              'location': data[i].location,
+              'status': data[i].status,
+              'description': data[i].description,
+              'repair_date': data[i].repair_date,
+              'can_accept': true,
+              'hidden': false
+            }
+          } else {
+            data[i] = {
+              'ID': data[i].ID,
+              'location': data[i].location,
+              'status': data[i].status,
+              'description': data[i].description,
+              'repair_date': data[i].repair_date,
+              'can_accept': false,
+              'hidden': false
+            }
+          }
+          orderform_list.push(data[i])
+
+        }
+        // console.log(orderform_list)
+
+
+
+
+
+
         that.setData({
-          orderform_list: res.data.data
+          orderform_list: orderform_list
         });
-        
-        isfinish = true;
-        wx.stopPullDownRefresh();
 
       } else {
         wx.showToast({

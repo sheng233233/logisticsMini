@@ -23,9 +23,9 @@
 <view hidden="{{!apLogin}}">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <van-cell-group>
-      <van-field name="username" required clearable label="用户名" icon="question-o" placeholder="请输入用户名" bind:blur="getusername" />
+      <van-field name="username"  clearable label="用户名" icon="question-o" placeholder="请输入用户名" bind:blur="getusername" />
 
-      <van-field name="password" required type="password" label="密码" placeholder="请输入密码" bind:blur="getpassword" />
+      <van-field name="password"  type="password" label="密码" placeholder="请输入密码" bind:blur="getpassword" />
     </van-cell-group>
 
     <!-- 用户类型 -->

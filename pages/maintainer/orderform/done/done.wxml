@@ -1,5 +1,57 @@
 <!--pages/maintainer/orderform/done/done.wxml-->
-<text>pages/maintainer/orderform/done/done.wxml</text>
+
+
+<image class="title_bg" src="/pages/images/list_bg.PNG" />
+<view class="title">
+  <text class="title_text">完成维修</text>
+</view>
+
+
+<view style=" position: fixed; z-index: 0; margin-top: 100px;">
+  
+  
+<van-cell-group>
+  <van-field
+    readonly
+    label="维修完成图片"
+  />
+  <van-uploader
+    file-list="{{ fileList }}"
+    max-count="1"
+    bind:after-read="afterRead"
+    bind:delete="deleteIMG"
+    preview-full-image
+  />
+  <van-field
+    label="配件信息"
+    type="textarea"
+    placeholder="填写使用的配件"
+    autosize
+    bind:blur="get_parts"
+  />
+
+</van-cell-group>
+
+<van-row>
+  <van-col span="18" offset="10">
+    <van-button bindtap="done" type="info"> 完成维修 </van-button>
+  </van-col>
+</van-row>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <text>pages/maintainer/orderform/done/done.wxml</text>
 <form bindsubmit="formSubmit" bindreset="formReset">
   <button bindtap="uploadIMG">上传维修完成图片</button>
   
@@ -7,4 +59,4 @@
 
   <input name="parts" placeholder="请填写本次维修使用的配件" />
   <button form-type="submit">完成</button>
-</form>
+</form> -->

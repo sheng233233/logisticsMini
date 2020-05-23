@@ -1,21 +1,65 @@
 /* pages/repair/orderform/history/history.wxss */
 
-.card{
-  width: 95%;
-  background-color: gainsboro;
-  border-radius: 5px;
-  margin: 10px;
-
-
-
+.title {
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 10%;
+  margin-bottom: 30px;
+  height: 300;
+  padding-left: 35%;
+  position: fixed;
 }
 
-.content{
-   font-size: 30rpx;
-   line-height: 40rpx;
+.title_bg {
+  z-index: -1;
+  position: fixed;
+  width: 100%;
+  height: 100px;
 }
 
-.time{
-  font-size: 23rpx;
+.title_text {
+  color: white;
+  font-size: 40rpx;
+}
 
+.orderlistBG {
+
+  background-color: rgb(247, 247, 247);
+  width: 100%;
+ 
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  background-color: white;
+  width: 290px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.content {
+  font-size: 34rpx;
+}
+
+.time {
+  font-size: 30rpx;
+}
+
+
+.warnning{
+  width:100%;
+
+height:100%;
+
+position: absolute;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
 }

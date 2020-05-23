@@ -1,7 +1,39 @@
 <!--pages/maintainer/orderform/orderform.wxml-->
-<text>pages/maintainer/orderform/orderform.wxml</text>
+ <!-- 标题图片 -->
+ <template name="main-order-temp">
+  <view>
+    <van-image width="320px" height="178px" fit="contain" src="/pages/images/title.png" />
+  </view>
+
+
+ <van-grid gutter="{{ 10 }}" clickable column-num="3">
+  <van-grid-item
+    icon="/pages/images/apply_blue.png"
+    link-type="navigateTo"
+    bindtap="to_allocated"
+    text="待接收任务"
+  />
+  <van-grid-item
+    icon="/pages/images/list_blue.png"
+    link-type="navigateTo"
+    bindtap="to_accept"
+    text="当前任务"
+  />
+
+  <van-grid-item
+    icon="/pages/images/list_blue.png"
+    link-type="navigateTo"
+    bindtap="to_all"
+    text="查看所有工单"
+  />
+
+</van-grid>
+
+</template>
+
+<!-- <text>pages/maintainer/orderform/orderform.wxml</text>
 <template name="main-order-temp">
   <button bindtap="to_allocated">待接收任务</button>
   <button bindtap="to_accept">当前任务</button>
   <button bindtap="to_all">查看所有工单</button>
-</template>
+</template> -->

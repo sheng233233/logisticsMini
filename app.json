@@ -31,7 +31,7 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "selectedColor": "#b02923",
+    "selectedColor": "#1296db",
     "list": [
       {
         "pagePath": "pages/orderform/orderform",
@@ -52,8 +52,8 @@
     "van-row": "/miniprogram_npm/vant-weapp/row/index",
     "van-col": "/miniprogram_npm/vant-weapp/col/index",
     "van-image": "/dist/image/index",
-    "van-grid": "/dist/grid/index",
-    "van-grid-item": "/dist/grid-item/index",
+    "van-grid": "/miniprogram_npm/@vant/weapp/grid/index",
+    "van-grid-item": "/miniprogram_npm/@vant/weapp/grid-item/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-field": "/miniprogram_npm/vant-weapp/field/index",
     "van-toast": "/miniprogram_npm/vant-weapp/toast/index",
@@ -63,8 +63,13 @@
     "van-radio-group": "/miniprogram_npm/vant-weapp/radio-group/index",
     "van-dropdown-menu": "/dist/dropdown-menu/index",
     "van-dropdown-item": "/dist/dropdown-item/index",
-    "van-action-sheet": "/miniprogram_npm/vant-weapp/action-sheet/index"
-
+    "van-action-sheet": "/miniprogram_npm/vant-weapp/action-sheet/index",
+    "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index",
+    "van-picker": "/miniprogram_npm/@vant/weapp/picker/index",
+    "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
+    "van-rate": "/miniprogram_npm/@vant/weapp/rate/index",
+    "van-panel": "@vant/weapp/panel/index",
+    "van-divider": "@vant/weapp/divider/index"
 
   },
 

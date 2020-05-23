@@ -25,10 +25,10 @@
       <van-field type="password" label="当前密码" placeholder="请输入密码" required bind:blur="get_oldpassword" size="large"/>
       <van-row>
         <van-col span="8" offset="4">
-          <van-button round type="default" bindtap="cancel">取消</van-button>
+          <van-button size="small" type="default" bindtap="cancel">取消</van-button>
         </van-col>
         <van-col span="8" offset="4">
-          <van-button round type="info" bindtap="check_password">确定</van-button>
+          <van-button size="small" type="info" bindtap="check_password">确定</van-button>
         </van-col>
       </van-row>
 

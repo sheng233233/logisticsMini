@@ -1,22 +1,72 @@
 <!--pages/repair/orderform/edit/edit.wxml-->
-<text>pages/repair/orderform/edit/edit.wxml</text>
-<view>
-  <form bindsubmit="formSubmit" bindreset="formReset">
-    <text name='location'>{{orderform.location}}\n</text>
-    <text name='type'>{{orderform.sort_name}}</text>
-   
-    <textarea placeholder="请填写详细故障描述,字数控制在6-500字之间" name="description" value="{{orderform.description}}" />
 
 
-    <image src="{{orderform.repair_image}}" hidden="{{!before}}" style="width: 100%;" />
-    <image src="{{tempFilePath}}" hidden="{{!after}}" style="width: 100%;" />
-    <button bindtap="uploadIMG">点击修改图片</button>
-    <image src="{{item }}" bindtap="listenerButtonPreviewImage" data-index="{{index}}" style="width: 100%;" />
-    <textarea placeholder="备注,选填" name="remarks" value="{{orderform.remarks}}" />
-    <input name="contact_person" bindblur="check_contact_person" placeholder="请填写联系人" value="{{orderform.contact_person}}"/>
-    <input name="contact_number" bindblur="check_contact_number" placeholder="请填写联系电话" value="{{orderform.contact_number}}"/>
 
-    <button type="default" formType="submit" hover-class="other-button-hover"> 修改 </button>
-  </form>
+<van-cell-group>
+  <van-field
+    required
+    clearable
+    label="联系人"
+     value="{{orderform.contact_person}}"
+    placeholder="请填写联系人信息"
+    bind:blur="get_contact_person"
+  />
+  <van-field
+    required
+    clearable
+    label="联系电话"
+    value="{{orderform.contact_number}}"
+    placeholder="请填写联系电话"
+    bind:blur="get_contact_number"
+  />
 
-</view>
+  <van-field
+    arrow-direction= "left"
+    readonly
+    label="详细地址"
+    value="{{orderform.location}}"
+  />
+
+  
+  <van-field
+    readonly
+    label="维修种类"
+    value="{{orderform.sort_name}}"
+  />
+
+  <van-field
+    readonly
+    label="故障图片"
+  />
+  <van-uploader
+    file-list="{{ fileList }}"
+    max-count="1"
+    bind:after-read="afterRead"
+    bind:delete="deleteIMG"
+    preview-full-image
+  />
+  <van-field
+    value="{{ orderform.description }}"
+    label="故障描述"
+    type="textarea"
+    placeholder="故障说明"
+    autosize
+    bind:blur="get_description"
+  />
+  <van-field
+    value="{{ orderform.remarks }}"
+    label="备注"
+    type="textarea"
+    placeholder="选填"
+    autosize
+    bind:blur="get_remarks"
+  />
+
+</van-cell-group>
+
+<van-row>
+  <van-col span="18" offset="10">
+    <van-button bindtap="update" type="info"> 修 改 </van-button>
+  </van-col>
+</van-row>
+

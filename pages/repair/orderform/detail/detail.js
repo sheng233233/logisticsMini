@@ -1,10 +1,12 @@
 // pages/repair/orderform/detail/detail.js
 Page({
-
+ 
   /**
    * 页面的初始数据
    */
   data: {
+    repair_image: [],
+    maintain_image: [],
     orderform: null,
     can_edit_delete: false,
     can_comment: false
@@ -16,7 +18,7 @@ Page({
   onLoad: function(options) {
     // console.log(options.ID);
     var oid = options.ID;
-    console.log(oid)
+    // console.log(oid)
     let that = this;
     //向后端发送请求
     wx.request({ //使用ajax请求服务
@@ -28,8 +30,13 @@ Page({
       data: {},
       success: function(res) {
         if (res.data.status == 200) {
-          console.log(res.data.data)
+          // console.log(res.data.data)
+          var repair_image = res.data.data.repair_image;
+          var maintain_image = res.data.data.maintain_image;
+
           that.setData({
+            repair_image: [{ url: repair_image}],
+            maintain_image: [{ url: maintain_image }],
             orderform: res.data.data
           });
 
@@ -48,19 +55,19 @@ Page({
             case "审核通过":
             case "审核通过,未接单":
             case "已接单,维修中":
-            case "维修完成待评价":
-              {
-                that.setData({
-                  can_edit_delete: false,
-                  can_comment: true
-                })
-              }
-              break;
             case "已评价":
               {
                 that.setData({
                   can_edit_delete: false,
                   can_comment: false
+                })
+              }
+              break;
+            case "维修完成待评价":
+              {
+                that.setData({
+                  can_edit_delete: false,
+                  can_comment: true
                 })
               }
               break;
@@ -86,53 +93,12 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  listenerButtonPreviewImage: function(event){
+    var url = event.target.dataset.url;
+    let that = this;
+    wx.previewImage({
+      urls: [url],
+    })
   },
 
   toEditOrderform: function() {

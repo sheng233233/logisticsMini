@@ -73,7 +73,22 @@ Page({
     })
   },
 
+  to_my_list:function(){
+    var user_type = wx.getStorageSync('user_type');
+    switch(user_type){
+      case 'repair':{
+        wx.navigateTo({
+          url: '/pages/repair/orderform/history/history',
+        })
+      }break;
+      case 'maintainer':{
+        wx.navigateTo({
+          url: '/pages/maintainer/orderform/list/list?status=all',
+        })
+      }break;
+    }
 
+  },
 
   to_edit_pwd: function() { //修改密码,显示密码验证弹窗
     this.setData({
@@ -111,6 +126,10 @@ Page({
       show: false,
     })
   },
+
+
+
+
 
 
 

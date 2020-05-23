@@ -6,10 +6,9 @@ Page({
    */
   data: {
     oid:null,
-    tempFilePath: null,
-    index: 0,
-    img_url: null,
-    maintain_image: null
+    maintain_image: null,
+    parts: null,
+    filelist: []
   },
 
   /**
@@ -19,6 +18,109 @@ Page({
     console.log(options.ID);
     this.setData({oid: options.ID});
   },
+
+
+  get_parts: function (event) {
+    var parts = event.detail.value;
+    if (parts == null || parts == '') {
+      this.setData({ parts: '本次维修未使用配件' })
+    } else {
+      this.setData({ parts: parts })
+    }
+
+  },
+
+
+  afterRead(event) {  //上传图片
+    let that = this;
+
+    const { file } = event.detail;
+
+
+    /**
+        * 上传完成后把文件上传到服务器
+        */
+
+    //上传文件
+    wx.uploadFile({
+      url: wx.getStorageSync('UploadUrl'),
+      filePath: file.path,
+      name: 'uploadIMG',
+      header: {
+        "Content-sort": "multipart/form-data"
+      },
+      success: function (res) {
+        // 上传完成需要更新 fileList
+        const { fileList = [] } = that.data;
+        fileList.push({ ...file, url: JSON.parse(res.data).data });
+        that.setData({ fileList });
+        that.setData({
+          'maintain_image': JSON.parse(res.data).data
+        });
+
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '错误提示',
+          content: '上传图片失败',
+          showCancel: false,
+          success: function (res) { }
+        })
+      }
+    });
+  },
+
+  deleteIMG: function () {
+    this.setData({ fileList: [] })
+  },
+
+
+
+  done:function(){
+    let that = this;
+
+    wx.request({  //完善维修图片路径
+      url: wx.getStorageSync('host') + "/orderform/after/" + that.data.oid,
+      method: 'PUT',
+      data: {
+        'maintain_image': that.data.maintain_image
+      }
+    })
+
+   
+    wx.request({ //报送配件
+      url: wx.getStorageSync('host') + "/orderform/parts/" + that.data.oid,
+      method: 'PUT',
+      data: {
+        'parts': this.data.parts
+      },
+      success: function (res) {
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '提交成功!',
+            icon: 'success',
+            success: function () {
+              setTimeout(function () {
+                wx.switchTab({
+                  url: '/pages/orderform/orderform'
+                })
+              }, 1000)
+            }
+          });
+
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          });
+        }
+      }
+    })
+  },
+
+
+
+
 
   uploadIMG: function () {
     let that = this;

@@ -1,59 +1,112 @@
-<!--pages/maintainer/orderform/detail/derail.wxml-->
-<text>工单详情页</text>
-<view>
-  <text>
-    工单ID:{{orderform.ID}}
-    维修种类:{{orderform.sort.name}}
-    故障地区:{{orderform.location}}
-    问题描述:{{orderform.description}}
-  </text> 故障图片:
-  <image src="{{orderform.repair_image}}"></image>
-  <text> 
-    备注:{{orderform.remarks}}
-    联系人:{{orderform.contact_person}}
-    联系电话:{{orderform.contact_number}}
-    报修日期:{{orderform.repair_date}}
-    工单状态:{{orderform.status}}
-    维修师傅:{{orderform.maintainer_name==null?'暂无':orderform.maintainer_name}}
-  </text>
+<!--pages/maintainer/orderform/detail/derail.wxml--> 
 
-  <block wx:if='{{orderform.maintain_image != null}}'>
-    维修完成图片:
-    <image src="{{orderform.maintain_image}}"></image>
-  </block>
+<van-cell-group>
+  
+  
+  <van-field
+    readonly
+    label="联系人"
+    value="{{orderform.contact_person}}"
+  />
+  <van-field
+    readonly
+    label="联系电话"
+    value="{{orderform.contact_number}}"
+  />
+
+  <van-field
+    readonly
+    label="故障类型"
+    value="{{orderform.sort_name}}"
+  />
+
+  <van-field
+    readonly
+    label="故障描述"
+    value="{{orderform.description}}"
+  />
+
+ <view>
+    <van-field
+      readonly
+      label="故障图片"
+    />
+    <van-uploader
+      file-list="{{ repair_image }}"
+      max-count="1"
+      bind:after-read="afterRead"
+      deletable="{{false}}"
+    />
+  </view>
+
+ <van-field
+    readonly
+    label="备注"
+    value="{{orderform.remarks}}"
+  />
+
+  <view wx:if="{{orderform.maintainer_name!=null}}">
+    <van-field
+    readonly
+    label="维修师傅姓名"
+    value="{{orderform.maintainer_name}}"
+    />
+  </view>
+
+  <view wx:if="{{orderform.maintainer_phone!=null}}">
+    <van-field
+    readonly
+    label="维修师傅联系电话"
+    value="{{orderform.maintainer_phone}}"
+    />
+  </view>
+
+  <view wx:if="{{orderform.maintain_image!=null}}">
+    <van-field
+      readonly
+      label="维修图片"
+    />
+    <van-uploader
+      file-list="{{ maintain_image }}"
+      max-count="1"
+      bind:after-read="afterRead"
+      deletable="{{false}}"
+    />
+
+  </view>
+
+  <view wx:if="{{orderform.comment_details!=null}}">
+  <van-rate value="{{ orderform.comment_level }}" readonly bind:change="onChange" />
+    <van-field
+    readonly
+    label="评价详情"
+    value="{{orderform.comment_details}}"
+    />
+  </view>
+
+  <van-field
+    readonly
+    label="工单状态"
+    value="{{orderform.status}}"
+  />
+
+  <van-field
+    readonly
+    label="报修时间"
+    value="{{orderform.repair_date}}"
+  />
 
 
-  <block wx:if="{{orderform.comment_level!=null}}">
-    <view>
+</van-cell-group>
 
-      <!-- 点亮的星星 -->
-      <block wx:for="{{star}}" wx:key="index">
-        <image class="star" src='../../../images/star.png'></image>
-      </block>
-      <!-- 剩余的熄灭星星 -->
-      <block wx:for="{{star_g}}" wx:key="index">
-        <image class="star" src='../../../images/starg.png'></image>
-      </block>
+<van-row wx:if="{{can_accept}}">
+  <van-col span="18" offset="8">
+    <van-button  bindtap="accept_orderform" type="info">接 受</van-button>
+  </van-col>
+</van-row>
 
-      <!-- <block wx:for="{{5}}" wx:key="index">
-        {{index}}
-      </block> -->
-
-    </view>
-
-    <view>
-      <text>评价详情:{{orderform.comment.details}}</text>
-    </view>
-
-  </block>
-
-  <block wx:if="{{orderform.comment.details==null}}">
-    暂无评价
-  </block>
-
-
-  <button wx:if="{{can_accept}}" bindtap="accept_orderform">接受</button>
-  <!-- <button disabled="{{isHidden}}" bindtap="toDeleteOrderform">拒绝</button> -->
-  <button wx:if="{{can_done}}" bindtap="to_done_orderform">维修完成</button>
-
-</view>
+<van-row wx:if="{{can_done}}">
+  <van-col span="18" offset="8">
+    <van-button  bindtap="to_done_orderform"  type="info">完 成</van-button>
+  </van-col>
+</van-row>

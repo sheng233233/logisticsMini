@@ -10,6 +10,8 @@ Page({
     can_done: false,      //是否显示完成维修
     star: 0,//点亮的星星数
     star_g: 5,//没有点亮的星星数
+    repair_image: [],
+    maintain_image: [],
   },
 
   /**
@@ -30,14 +32,15 @@ Page({
       data: {},
       success: function (res) {
         if (res.data.status == 200) {
-          var orderform_result = res.data;
-          var level = orderform_result.data.comment != null ? Number(orderform_result.data.comment.level) : 0;
+          var repair_image = res.data.data.repair_image;
+          var maintain_image = res.data.data.maintain_image;
+
           that.setData({
-            orderform: orderform_result.data,
-            star: level,
-            star_g: 5 - level
+            repair_image: [{ url: repair_image }],
+            maintain_image: [{ url: maintain_image }],
+            orderform: res.data.data
           })
-          var orderform_status = orderform_result.data.status;
+          var orderform_status = res.data.data.status;
           switch (orderform_status) {
             case "未审核":
             case "审核未通过":

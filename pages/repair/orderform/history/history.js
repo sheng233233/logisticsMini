@@ -73,10 +73,68 @@ Page({
    */
   toDetailByID: function(e) {
     var ID = e.currentTarget.dataset.id;
-    console.log(ID);
+    // console.log(ID);
     wx.navigateTo({
       url: '../detail/detail?ID=' + ID,
     })
+  },
+
+  toDelete: function (e){
+    let that = this;
+    var ID = e.currentTarget.dataset.id;
+    //向后端发送请求
+    wx.request({ //使用ajax请求服务
+      url: wx.getStorageSync('host') + "/orderform/" + ID, //url
+      method: 'DELETE', //请求方式
+      header: {
+        'Content-Type': 'application/json',
+      },
+      data: {},
+      success: function (res) {
+        if (res.data.status == 200) {
+          var list = that.data.orderform_list;
+          var new_list = [];
+          for(var i=0; i<list.length; i++){
+            if (list[i].ID != ID){
+              new_list.push(list[i]);
+            }
+          }
+          that.setData({
+            orderform_list: new_list
+          })
+          wx.showToast({
+            title: '删除成功!',
+            icon: 'success',
+          });
+
+          // wx.showToast({
+          //   title: '删除成功!',
+          //   icon: 'success',
+          //   success: function () {
+          //     setTimeout(function () {
+          //       wx.redirectTo({
+          //         url: '/pages/repair/orderform/history/history'
+          //       })
+          //     }, 1000)
+          //   }
+          // });
+
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          });
+        }
+
+      },
+      fail: function () {
+        app.consoleLog("请求数据失败");
+      },
+      complete: function () {
+        // complete 
+      }
+    })
+
   }
 })
 
@@ -101,9 +159,44 @@ function loadmore(that) {
     data: {},
     success: function(res) {
       if (res.data.status == 200) {
-        console.log(res.data.data);
+        // console.log(res.data.data);
+        var data=res.data.data;
+        var orderform_list = [];
+        for (var i = 0; i < data.length; i++) {
+          // console.log(data[i]);
+          if (data[i].status == "未审核" || data[i].status == "审核未通过"){
+            data[i]={ 
+              'ID': data[i].ID,
+              'location': data[i].location,
+              'status': data[i].status,
+              'description': data[i].description,
+              'repair_date': data[i].repair_date,
+              'can_delete': true,
+              'hidden': false
+              }
+          }else{
+            data[i]={ 
+              'ID': data[i].ID,
+              'location': data[i].location,
+              'status': data[i].status,
+              'description': data[i].description,
+              'repair_date': data[i].repair_date,
+              'can_delete': false ,
+              'hidden': false
+              }
+          }
+          orderform_list.push(data[i])
+        
+        }
+        // console.log(orderform_list)
+
+
+
+
+
+
         that.setData({
-          orderform_list: res.data.data
+          orderform_list: orderform_list
         });
 
         // // console.log(orderform_result.data);

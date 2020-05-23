@@ -1,14 +1,65 @@
 <!--pages/repair/orderform/history/history.wxml-->
 
+<view wx:if="{{orderform_list.length == 0}}"  class="warnning">
+  <van-field value="您还没有报修记录!" />
 
-
-<view wx:key="id" wx:for="{{orderform_list}}">
-  <view class="card" data-id="{{item.ID}}" bindtap="toDetailByID">
-    <text class="content">
-      维修分类: {{item.sortName}}\n
-      问题描述: {{item.description}}\n
-      维修状态: {{item.status}}\n
-    </text>
-    <text class="time">报修时间: {{item.repair_date}}</text>
-  </view>
 </view>
+
+<view wx:else>
+
+  <!-- 
+<image class="title_bg" src="/pages/images/list_bg.PNG" />
+<view class="title">
+  <text class="title_text">历 史 工 单</text>
+</view> -->
+
+  <view class="orderlistBG">
+    <view wx:key="id" wx:for="{{orderform_list}}" data-id="{{item.ID}}">
+      <view class="card" hidden="{{item.hidden}}">
+        <van-panel use-footer-slot="true" title="{{item.location}}" status="{{item.status}}">
+
+          <van-row>
+            <van-col span="18" offset="1" style=" font-size: 34rpx; ">
+              故障描述: {{item.description}}
+            </van-col>
+          </van-row>
+
+
+          <view slot="footer">
+            <van-row>
+              <van-col span="12">
+                <text class="time">报修日期: {{item.repair_date}}</text>
+              </van-col>
+              <view wx:if="{{item.can_delete}}">
+                <van-col span="5">
+                  <van-button size="small" type="danger" bindtap="toDelete" data-id="{{item.ID}}">删除</van-button>
+                </van-col>
+                <van-col span="5" offset="1">
+                  <van-button size="small" type="info" bindtap="toDetailByID" data-id="{{item.ID}}">详情</van-button>
+                </van-col>
+
+              </view>
+
+              <view wx:if="{{!item.can_delete}}">
+                <van-col span="5" offset="6">
+                  <van-button size="small" type="info" bindtap="toDetailByID" data-id="{{item.ID}}">详情</van-button>
+                </van-col>
+
+              </view>
+
+
+            </van-row>
+          </view>
+        </van-panel>
+        <!-- <van-divider /> -->
+        <!-- <van-divider contentPosition="center" customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;"> 
+      </van-divider> -->
+      </view>
+
+
+
+    </view>
+  </view>
+
+</view>
+

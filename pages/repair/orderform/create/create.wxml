@@ -1,8 +1,106 @@
 <!--pages/repair/orderform/create/create.wxml-->
+<van-cell-group>
+  <van-field
+    required
+    clearable
+    label="联系人"
+    icon="question-o"
+    placeholder="请填写联系人信息"
+    bind:blur="get_contact_person"
+  />
+  <van-field
+    required
+    clearable
+    label="联系电话"
+    icon="question-o"
+    placeholder="请填写联系电话"
+    bind:blur="get_contact_number"
+  />
+
+  <van-field
+
+    arrow-direction= "left"
+    input-align="right"
+    readonly
+    required
+    label="所在地区"
+    value="{{area==null?'请选择地区':area}}"
+    bindtap="areaShow"
+  />
+  <van-popup show="{{areaShow}}" position="bottom" custom-style="height: 40%;" bind:close="areaClose">
+
+    <van-picker title="选择地区" columns="{{ areas }}" bind:change="onAreaChange" />
+   
+  </van-popup>
+  
+  <van-field
+    value="{{ message }}"
+    label="地址"
+    type="textarea"
+    placeholder="请填写具体的故障地址(地区之后)"
+    autosize
+    border="{{ false }}"
+    bind:blur="get_location_details"
+  />
+  <van-field
+
+    arrow-direction= "left"
+    input-align="right"
+    readonly
+    required
+    label="维修种类"
+    value="{{sort_text==null?'请选择种类':sort_text}}"
+    bindtap="sortShow"
+  />
+  
+   <van-popup show="{{sortShow}}" position="bottom" custom-style="height: 40%;" bind:close="sortClose">
+
+    <van-picker title="选择维修种类" columns="{{ sorts }}" value-key="name" bind:change="onSortChange" />
+   
+  </van-popup>
+
+  <van-uploader
+    file-list="{{ fileList }}"
+    max-count="1"
+    bind:after-read="afterRead"
+  />
+  <van-field
+    label="故障描述"
+    type="textarea"
+    placeholder="故障说明"
+    autosize
+    border="{{ false }}"
+    bind:blur="get_description"
+  />
+  <van-field
+    label="备注"
+    type="textarea"
+    placeholder="选填"
+    autosize
+    border="{{ false }}"
+    bind:blur="get_remarks"
+  />
+
+</van-cell-group>
+
+<van-row>
+  <van-col span="18" offset="8">
+    <van-button bindtap="commit" round type="info">  马上申请  </van-button>
+  </van-col>
+</van-row>
+
+
+
+
+
+
+
+
+<!-- 
 <view>
   <form bindsubmit="formSubmit" bindreset="formReset">
     <button bindtap="uploadIMG">上传故障图片</button>
-    <!-- 回显图片 -->
+
     <image src="{{tempFilePath }}" data-index="{{index}}" style="width: 100%;" />
     <view class="section">
       <picker mode="multiSelector" bindchange="bindLocationChange" bindcolumnchange="bindLocationColumnChange" value="{{locationIndex}}" range="{{locationArray}}">
@@ -12,7 +110,7 @@
       </picker>
     </view>
     <input name="locationDetail" placeholder="请填写具体的故障地址(地区之后)" />
-    <!-- <map longitude="113.6891841900" latitude="34.5855949600"></map> -->
+
     <view class="section">
       <picker mode="multiSelector" bindchange="bindSortChange" bindcolumnchange="bindSortColumnChange" value="{{sortIndex}}" range="{{sortArray}}" range-key="name">
         <view class="picker">
@@ -21,17 +119,7 @@
       </picker>
     </view>
     <textarea placeholder="请填写详细故障描述,字数控制在6-500字之间" name="description" />
-    <!-- <view id="view1">
-      <view id="btns">
-        <image id="ima1" mode="aspectFitf" src="{{src}}"></image>
-        <button type="primary" bindtap="btntakephoto">拍摄照片</button>
-        <button type="primary" bindtap="btnchoosephoto">选择照片</button>
-        <block wx:for="{{tempFilePaths}}" wx:key="index">
-          <image src="{{item }}" bindtap="listenerButtonPreviewImage" data-index="{{index}}" style="width: 100%;" />
-        </block>
-        <button type="primary" bindtap="btnupload">上传</button>
-      </view>
-    </view> -->
+    
 
 
     <textarea placeholder="备注,选填" name="remarks" />
@@ -42,4 +130,4 @@
     <button type="default" formType="submit" hover-class="other-button-hover"> 提交申请 </button>
   </form>
 
-</view>
+</view> -->

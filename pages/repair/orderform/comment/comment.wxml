@@ -1,18 +1,29 @@
 <!--pages/repair/orderform/comment/comment.wxml-->
-<text>维修评价</text>
 
-<view style='margin-top:60px;'>请为本次维修评分</view>
-<!-- 点亮的星星 -->
-<block wx:for="{{star}}" wx:key="index">
-  <image class="star" catchtap='in_xin' id='{{index+1}}' data-in='star' src='../../../images/star.png'></image>
-</block>
-<!-- 剩余的熄灭星星 -->
-<block wx:for="{{star_g}}" wx:key="index">
-  <image class="star" catchtap='in_xin' id='{{index+1}}' data-in='starg' src='../../../images/starg.png'></image>
-</block>
-<view>{{desc[star]}}</view>
 
-<form bindsubmit="formSubmit" bindreset="formReset">
-  <textarea name='details' placeholder="详细评价,选填"></textarea>
-   <button type="default" formType="submit" hover-class="other-button-hover"> 提交评价 </button>
-</form>
+<image class="title_bg" src="/pages/images/list_bg.PNG" />
+<view class="title">
+  <text class="title_text">评 价</text>
+</view>
+
+
+<view style=" position: fixed; z-index: 0; margin-top: 100px;">
+  
+  <van-row>
+    <van-col span="12" offset="1">
+      <text>请为本次维修评分</text>
+    </van-col>
+    <van-col span="10" offset="1">
+      <van-rate value="{{ value }}" size="{{ 25 }}" color="#ee0a24" void-color="#eee" void-icon="star" bind:change="onChange" />
+    </van-col>
+
+  </van-row>
+   
+
+  <van-field autosize label="评价" placeholder="详细评价,选填" bind:blur="get_details" />
+  <van-row>
+    <van-col span="8" offset="10">
+      <van-button  type="info" bindtap="comment">提交评价</van-button>
+    </van-col>
+  </van-row>
+</view>
