@@ -125,6 +125,8 @@ const sort_arr = {
   }],
 };
 
+
+
 Page({
 
   /**
@@ -132,9 +134,9 @@ Page({
    */
   data: {
     sorts: [{
-        values: Object.keys(sort_arr),
-        className: 'column1',
-      },
+      values: Object.keys(sort_arr),
+      className: 'column1',
+    },
       {
         values: sort_arr[0],
         className: 'column2',
@@ -153,12 +155,15 @@ Page({
     ],
 
 
+
+
     areaShow: false,
     sortShow: false,
     area: null,
 
     sort_text: null,
     sort: null,
+    sort_arr: null,
 
     //表单信息
     contact_person: null,
@@ -171,16 +176,29 @@ Page({
     //上传图片
     fileList: [],
 
-
-    sortArray: null, //用于展示的种类数组
-    sortIndex: null, //用于展示的种类数组索引
-    location: null,
-    locationArray: null, //用于展示的地区数组
-    locationIndex: null, //用于展示的地区数组索引
-    tempFilePath: null,
   
-    index: 0,
-    filepath: "",
+  },
+
+  onShow: function(){
+    let that = this;
+    //获得维修分类信息
+    wx.request({
+      url: wx.getStorageSync('host') + "/sort/getAllsort", //url
+      method: 'GET', //请求方式
+      header: {
+        'Content-Type': 'application/json',
+      },
+      success: function (res) {
+        var sort_arr = res.data.data;
+        that.setData({
+          sort_arr: sort_arr,
+        })
+
+
+      }
+    })
+
+
   },
 
 

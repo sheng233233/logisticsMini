@@ -113,7 +113,7 @@ Page({
         }
       },
       fail: function () {
-        app.consoleLog("请求数据失败");
+        // app.consoleLog("请求数据失败");
       },
       complete: function () {
         // complete 
@@ -220,7 +220,7 @@ Page({
 
       },
       fail: function () {
-        app.consoleLog("请求数据失败");
+        // app.consoleLog("请求数据失败");
       },
       complete: function () {
         // complete 

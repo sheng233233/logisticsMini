@@ -6,11 +6,7 @@ var isfinish = false; //加载完毕
 Page({
   data: {
     massage: '',
-    title: null,
     orderform_list: [],
-    inputShowed: false,
-    inputVal: "",
-    condition: '',
     status: null //用于查询工单的状态
   },
 
@@ -25,7 +21,6 @@ Page({
       case 'allocated':
         {
           this.setData({
-            title: '未接受任务列表',
             massage: '任务已全部接受',
           })
         }
@@ -34,16 +29,13 @@ Page({
         {
           this.setData({
             massage: '当前没有维修任务!',
-            title: '当前任务列表'
-            
           })
         }
         break;
       case 'all':
         {
           this.setData({
-            massage: '维修记录为空!',
-            title: '历史工单'
+            massage: '维修记录为空!'
           })
         }
         break;
@@ -90,7 +82,6 @@ Page({
     // console.log(page)
   },
   formSubmit: function(e) {
-    // console.log(e.detail.value.condition);
     this.setData({
       condition: e.detail.value.condition
     });
@@ -183,9 +174,9 @@ function loadmore(that) {
     },
     data: {},
     success: function(res) {
-      console.log(res.data)
+
       if (res.data.status == 200) {
-        // console.log(res.data.data);
+
         var data = res.data.data;
         var orderform_list = [];
         for (var i = 0; i < data.length; i++) {

@@ -230,7 +230,10 @@ Page({
 
       },
       fail: function () {
-        app.consoleLog("请求数据失败");
+        wx.showToast({
+          title: '登录失败,请稍后重试',
+          icon: 'none'
+        })
       },
       complete: function () {
         // complete 

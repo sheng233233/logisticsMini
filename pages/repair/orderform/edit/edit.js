@@ -32,7 +32,7 @@ Page({
       data: {},
       success: function (res) {
         if (res.data.status == 200) {
-          console.log(res.data.data)
+          // console.log(res.data.data)
           var image = res.data.data.repair_image;
           that.setData({
             orderform: res.data.data,
@@ -52,7 +52,7 @@ Page({
 
       },
       fail: function () {
-        app.consoleLog("请求数据失败");
+      
       },
       complete: function () {
         // complete 
@@ -235,7 +235,7 @@ Page({
 
       },
       fail: function () {
-        app.consoleLog("请求数据失败");
+   
       },
       complete: function () {
         // complete 

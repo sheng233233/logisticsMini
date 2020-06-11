@@ -8,20 +8,20 @@
 
  <van-grid gutter="{{ 10 }}" clickable column-num="3">
   <van-grid-item
-    icon="/pages/images/apply_blue.png"
+    icon="/pages/images/allo.png"
     link-type="navigateTo"
     bindtap="to_allocated"
     text="待接收任务"
   />
   <van-grid-item
-    icon="/pages/images/list_blue.png"
+    icon="/pages/images/accept.png"
     link-type="navigateTo"
     bindtap="to_accept"
     text="当前任务"
   />
 
   <van-grid-item
-    icon="/pages/images/list_blue.png"
+    icon="/pages/images/all.png"
     link-type="navigateTo"
     bindtap="to_all"
     text="查看所有工单"

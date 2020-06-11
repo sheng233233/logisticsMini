@@ -14,7 +14,7 @@
     text="报修申请"
   />
   <van-grid-item
-    icon="/pages/images/list_blue.png"
+    icon="/pages/images/history.png"
     link-type="navigateTo"
     url="/pages/repair/orderform/history/history"
     text="历史工单"
